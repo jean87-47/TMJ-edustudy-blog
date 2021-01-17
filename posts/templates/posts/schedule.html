@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block css %}
+
+    <style>
+        body { color:Grey;}
+
+
+    </style>
+
+
+{% endblock %}
+
+{% block content %}
+<style>
+    h1{
+    background-color : Orange;
+    color:White;
+    padding-left:30px;
+    }
+
+
+    h4{color:Grey;}
+    h3{color:DimGrey;}
+
+a {color:White;}
+h5 a{
+    border:2px solid white;
+    border-radius:15px/15px;
+    width:170px;
+    height:40px;
+    display:inline-block;
+    background-color:SkyBLue;
+    padding: 7px 30px;
+    margin-right:40px;
+    }
+
+
+
+</style>
+
+<h1> 강연일정</h1>
+<br>
+<br>
+
+<hr>
+<h3> 날짜 :   2021년 OO월 OO일 일요일</h3><br>
+<h3> 시간 :  오전 10시 ~ 오후 6시</h3><br>
+<h3> 장소 : 서울역  OO 아트홀</h3><br>
+<h3> 점심시간 : 12시 ~ 1시 </h3><br>
+<hr>
+<h3>O월 OO일에 뵙겠습니다 ^^.</h3>
+
+<hr>
+    <h5><a href="{% url 'posts:index' %}">첫페이지</a>
+{% if user.is_authenticated %}
+    <a href="{% url 'accounts:logout' %}">로그 아웃</a></h5>
+{% else %}
+    <a href="{% url 'accounts:login' %}">로그인</a>
+   <a href="{% url 'accounts:signup' %}"> 가입신청</a></h5>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+    h2{
+    background-color : Orange;
+    color:White;
+    }
+
+    a{color:White ;}
+    h4,h5{color:Grey;}
+    h6{color:DimGrey;}
+
+
+
+
+</style>
+<hr>
+<h2> {{ post.title }}에 답하기 또는 댓글 달기</h2>
+<br>
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    <button class="btn btn-primary">저장하기</button>
+</form>
+{% endblock %}

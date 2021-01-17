@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+{% load bootstrap4 %}
+
+<body>
+<br><br>
+<h3 style="color:skyblue ;
+           line-height:180%;"> 안녕하세요 <br> TMJ edustudy에 오신것을 환영합니다.<br>
+             강연에서 공지한 key 값을 입력해주세요.</h3>
+<h6 style="color:darkgray; font-weight:bold;">브라우저는 가능하면 google chrome 또는 microsoft edge를 이용해주세요</h6>
+
+</body>
+<br><br>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary float-right my-2"> send</button>
+
+</form>
+
+{% endblock %}

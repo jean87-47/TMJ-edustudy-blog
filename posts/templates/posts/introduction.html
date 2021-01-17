@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+
+a {color:White;}
+h5 a{
+    border:2px solid white;
+    width:170px;
+    height:40px;
+    display:inline-block;
+    background-color:SkyBLue;
+    padding: 7px 30px;
+    margin-left:40px;
+    border-radius:15px/15px;
+    }
+
+.page-middle{width:90%;
+   height:100px;
+   border:1px solid white;
+   background: url( "{% static 'posts/images/cloud.jpg' %}" )no-repeat center center;
+   background-size: cover;
+
+   padding:50px 200px 400px 100px;
+   color:dimgray;
+    }
+
+
+
+
+</style>
+<div class="page-middle">
+<h1>TMJ 연구회 </h1>
+<br>
+<br>
+<h4> 저희 TMJ 교육 연구회는 2003년부터 활동해 왔으며...</h4>
+<br>
+<h4></h4>
+<p></p>
+
+
+<h4></h4>
+</div>
+
+<br><hr>
+    <h5><a href="{% url 'posts:index' %}">첫페이지</a>
+{% if user.is_authenticated %}
+   <a href="{% url 'accounts:logout' %}">로그 아웃</a></h5>
+{% else %}
+    <a href="{% url 'accounts:login' %}">로그인</a>
+    <a href="{% url 'accounts:signup' %}"> 가입신청</a></h5>
+{% endif %}
+{% endblock %}

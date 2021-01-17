@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style>
+    h2{
+    background-color : Orange;
+    color:White;
+    }
+
+    h3{
+      background-color:DarkGray;
+      border-bottom:solid 3px DarkGray;
+      color: gold;
+      width:350px;
+      text-align : center;
+      display:inline-block;
+      margin-bottom:30px;
+
+      }
+    a{color:White ;}
+    h4,h5{color:Grey;
+          }
+    h5{color:DimGrey;
+    margin-botton:10px;}
+
+    h6{
+    color:RoyalBlue;
+    border:2px solid white;
+    width:300x;
+    height:30px;
+    display:inline-block;
+    background-color:White;
+    padding: 5x 30px;
+    margin-right:20px;
+    border-radius:8px/8px;
+        }
+
+.pic{float:left;
+     margin-right:50px;
+
+     padding-bottom:0px;}
+
+h5{line-height:200%;
+ background-color: palegoldenrod;
+ padding-left:15px;
+ width:100%;
+ border:30px solid White;
+ border-radius: 8px/8px;
+
+ }
+
+ .nav {
+  background:White;
+  height: 50px;
+  width:100%;
+  margin-left:0px;
+  padding-top:10px;
+  padding-right:20px;
+}
+
+.nav ul {
+  height: 40px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+.nav ul li {
+  color: White;
+  display: inline-block;
+  height: 20px;
+  line-height:20px;
+  list-style: none;
+  padding-top:0px;
+
+  padding-left:30px;
+  transition: background .5s;
+}
+
+
+
+
+</style>
+
+<h2> {{ post.title }}  <a href="{% url 'posts:index' %}" style="color:white;
+font-size:20px; float:right; padding:10px;font-weight:bold;">첫페이지로 가기</a></h2>
+
+<br>
+<h6>작성시간 : {{ post.created_date }} </h6><h6>  작성자 : {{ post.user }}</h6><h6> 카테고리 :
+  {{ post.category }} </h6>
+<br><br>
+<div class="pic">
+{% if post.image %}
+<p><img src="{{ post.image.url }}" width="300"></p>
+  {% endif %}
+</div>
+<div class="core">
+<h5 style="font-weight:bold;">  {{ post.content|linebreaksbr }}</h5>
+    {% if post.link %}
+    <br>
+ <a href="{{ post.link }}"> <h5> 링크 : {{ post.link }}</h5></a>
+    {% endif %}
+</div>
+
+
+<br>
+<div class="set">
+
+
+    <div class="nav">
+<ul>
+    <li>
+
+<button class="btn btn-primary"><a href="{% url 'posts:edit' pk=post.pk %}">수정</a></button>
+
+</li>
+    <li>
+<form action="{% url 'posts:delete' pk=post.pk  %}"  method="POST">
+        {% csrf_token %}
+<button class="btn btn-primary"> 삭제 </button>
+</form>
+    </li>
+
+    <li>
+
+ <a href="{% url 'posts:comments_create' pk=post.pk %}"> <button class="btn btn-primary">댓글 작성</button></a>
+
+
+    </li>
+
+</ul>
+        작성자만이 질문 내용을 수정, 삭제 할 수 있습니다.
+    </div>
+</div>
+
+<br>
+
+
+<hr>
+<h3> Answers or Comments </h3>
+
+{% if post.comment_set.all %}
+{% endif %}
+
+
+
+{% for comment in post.comment_set.all %}
+<br>
+<p> 작성자..............{{ comment.user }}</p>
+{% if comment.image %}
+<p> <img src="{{ comment.image.url }}" width="200"></p>
+{% endif %}
+<h4 style="line-height:150%; font-size:22px;"> {{ comment.content|linebreaksbr }}</h4>
+<a href="{{ comment.link }}" style="color:gray;"> 링크 : {{ comment.link }}</a>
+<br><br>
+<form action="/posts/comments/{{ comment.pk }}/delete/" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-secondary">댓글 지우기</button>
+
+</form>
+
+<hr>
+{% endfor %}
+
+
+
+
+
+
+{% endblock %}

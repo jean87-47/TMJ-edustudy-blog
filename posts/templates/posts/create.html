@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+  h1{
+    background-color : Orange;
+    color:White;
+    }
+
+    a{color: white;}
+ h5{
+    color:White;
+    border:2px solid white;
+    width:120px;
+    height:35px;
+    display:inline-block;
+    background-color:SkyBLue;
+    padding-top:5px ;
+    text-align:center;
+    margin-right:20px;
+    border-radius:12px/12px;
+        }
+</style>
+{% if request.resolver_match.url_name == 'create' %}
+<h1>질문 사항을 올려주세요. </h1>
+{% else %}
+<h2>작성된 글을 수정할 수 있어요</h2>
+{% endif %}
+<h5><a href="{% url 'posts:index' %}">첫페이지</a></h5>
+     <h5><a href="{% url 'accounts:logout' %}">로그 아웃</a></h5>
+
+<br><br>
+<h6 style="color:Orangered;">image 파일은 필수 항목이 아닙니다.</h6>
+<br>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% if request.resolver_match.url_name == 'edit' %}
+ <h6 style="color:orangered;">img를 변경하시려면 파일선택만 하시면 되고, 삭제하시려면 취소에 표시하시면 됩니다. </h6>
+    <button class="btn btn-primary">수정하기</button>
+    {% else %}
+    <button class="btn btn-primary">새글</button>
+  {% endif %}
+    <br><br>
+
+
+</form>
+
+
+
+
+{% endblock %}

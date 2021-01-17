@@ -1,0 +1,44 @@
+{% load static %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TMJ 교육연구회</title>
+    <style>
+
+        body { color:Grey;}
+
+    </style>
+{% block css %}
+{% endblock %}
+
+{% bootstrap_css %}
+
+</head>
+
+
+<body>
+<br>
+
+
+    <div class="container">
+
+        <br><br>
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+    {% bootstrap_javascript jquery='full' %}
+
+</body>
+
+</html>
+
+
+
+

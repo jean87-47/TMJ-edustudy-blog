@@ -1,0 +1,103 @@
+
+{% load static %}
+
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TMJ 교육연구회</title>
+
+
+<style>
+ .nav {
+  background:Darkgray;
+  height: 50px;
+  width: 90%;
+  margin-left:50px;
+}
+
+.nav ul {
+  height: 40px;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.nav ul li {
+  color: White;
+  display: inline-block;
+  height: 20px;
+  line-height:20px;
+  list-style: none;
+  padding-top;0px;
+
+  padding-left:100px;
+  transition: background .5s;
+}
+
+a {color:White;}
+a h3{color:;white;
+    border:2px solid white;
+    width:150px;
+    height:30px;
+    display:inline-block;
+    background-color:SkyBLue;
+    padding: 5px 30px;
+    text-align:center;
+    margin-left:50px;
+    border-radius:15px/15px;
+    }
+
+h2{width:90%;
+   height:100px;
+   border:1px solid white;
+   background: url( "{% static 'posts/images/sunset (2).jpg' %}" )no-repeat center center;
+   background-size: cover;
+   padding:200px 100px;
+   color:dimgray;
+    }
+
+    h4{margin-left:50px;}
+
+
+</style>
+</head>
+
+<h2><p>안녕하세요?<br>
+악관절 교육연구회입니다.<br>
+ 홈페이지에 오신걸 환영합니다.</p></h2>
+
+
+
+
+<div class="nav">
+ <div class="container">
+  <ul>
+   <li><h3><a href="{% url 'posts:list' %}"> Q & A  게시판</a></h3></li>
+   <li><h3><a href="{% url 'posts:create' %}"> Q & A 새글쓰기</a></h3></li>
+   <li><h3><a href="{% url 'posts:schedule' %}">강연 일정 및 공지사항</a></h3></li>
+   <li><h3><a href="{% url 'posts:introduction' %}">악관절 교육연구회 소개</a></h3></li>
+  </ul>
+ </div>
+</div>
+<br>
+<br>
+<hr>
+
+<h4> 게시판은 로그인이 필요하지 않습니다.</h4>
+<h4 style="color:royalblue;font-size:20px;">가입신청은 어떠한 개인정보도 요구하지 않으며 작성글과 댓글을 타인이 수정 삭제 하지 못하는 용도로만 사용됩니다.</h4>
+<hr>
+<div class="enter">
+{% if user.is_authenticated %}
+<a href="{% url 'accounts:logout' %}"><h3>로그 아웃</h3></a>
+<a href="{% url 'accounts:delete' %}"><h3>회원 탈퇴</h3></a>
+ </form>
+
+{% else %}
+ <a href="{% url 'accounts:login' %}"><h3>로그인</h3></a>
+ <a href="{% url 'accounts:signup' %}"> <h3>가입신청하기</h3></a>
+{% endif %}
+</div>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    h1{
+    background-color : Orange;
+    color:White;
+    }
+   h5{color:YellowGreen;}
+    h4{color:Grey;}
+    h6{color:DimGrey;}
+
+
+    </style>
+
+
+<h1>카테고리 </h1>
+<br>
+<h6>제목을 클릭하시면 자세한 내용을 보실 수 있습니다.</h6>
+<h6>또한 작성자에 의해 편집 및 삭제 가능합니다.</h6>
+<br><br>
+<a href="{% url 'posts:index' %}"><h5>첫페이지로 가기</h5></a>
+<br><br><hr>
+
+{% for category in categorys %}
+
+<h4><a href="{% url 'posts:category' pk=category.pk %}">{{ category.name }}</a></h4><br>
+
+
+{% endfor %}
+{% endblock %}

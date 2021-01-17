@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+    h1{
+    background-color : Orange;
+    color:White;
+    }
+
+
+
+
+   h4{
+    color:Gray;
+    border:2px solid white;
+    width:250px;
+    height:35px;
+    display:inline-block;
+    background-color:Gold;
+    padding-top:3px;
+    padding-left:10px;
+    border-radius:5px/5px;
+    font-size:19px;}
+
+
+
+
+a{color: white;}
+ h5{
+    color:White;
+    border:2px solid white;
+    width:300x;
+    height:30px;
+    display:inline-block;
+    background-color:SkyBLue;
+    padding: 5x 30px;
+        }
+
+
+h6{color: blue; }
+
+    </style>
+
+
+<h1>게시판 목록</h1>
+<br>
+<h6 style="color:DimGray">제목을 클릭하시면 자세한 내용을 보실 수 있습니다.</h6>
+<h6 style="color:DimGray">또한 작성자에 의해 편집 및 삭제 가능합니다.</h6>
+<br>
+<a href="{% url 'posts:index' %}"><h4>첫페이지로 가기</h4></a>
+
+<a href="{% url 'posts:category_list' %}"><h4> 카테고리별 질문목록</h4></a>
+
+<br><br>
+<table class="table">
+
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">작성번호</th>
+          <th scope="col">제목</th>
+            <th scopte="col">사진</th>
+            <th scopre="col">내용</th>
+          <th scope="col">작성 시간</th>
+            <th scope="col">카테고리</th>
+
+        </tr>
+      </thead>
+      <tbody>
+       {% for post in posts %}
+        <tr>
+          <th scope="row">{{ post.pk }}</th>
+
+           <td><h5><a href="{% url 'posts:detail' pk=post.pk %}">{{ post.title }}</a></h5></td>
+             {% if post.image %}
+           <td><img src="{{ post.image.url }}" width="30" ></td>
+            {% else %}
+             <td></td>
+            {% endif %}
+            <td> {{ post.content|truncatechars:15 }}</td>
+          <td>{{ post.created_date }}</td>
+            <td> <a href="{% url 'posts:category' pk=post.category.pk %}"><h6>{{ post.category }}</h6></td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+<br><br>
+
+
+
+{% endblock %}
+

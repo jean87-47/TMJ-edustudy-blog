@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+h5{
+    color:White;
+    border:2px solid white;
+    width:160px;
+    height:45px;
+    display:inline-block;
+    background-color:SkyBLue;
+    margin-right:20px;
+    text-align:center;
+    padding-top:10px;
+    border-radius: 15px /15px ;
+    font-size:18px;
+        }
+
+    </style>
+<h2 style="color:gray;">로그인</h2>
+<br>
+<form method = "POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button class="btn btn-primary">로그인하기</button>
+
+
+</form>
+<br><br><br>
+<a href="{% url 'posts:index' %}"><h5>첫페이지로 가기</h5></a>
+{% endblock %}
