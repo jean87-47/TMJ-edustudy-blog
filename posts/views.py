@@ -124,7 +124,7 @@ def key(request):
                 key = form.save(commit=False)
                 key.save()
                 number = request.POST.get('key_number')
-                if number == 'tmj_advance_2102':
+                if number == 'tmj-advance-2102':
                     return redirect('posts:index')
 
         else:
